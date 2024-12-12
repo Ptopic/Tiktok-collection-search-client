@@ -75,6 +75,7 @@ const HomePage = () => {
                   <input
                     type='text'
                     {...register('playlistUrl')}
+                    value={'https://vm.tiktok.com/ZNeTjnVGd/'}
                     placeholder='Enter a tiktok url'
                     className='border-gray-300 w-full rounded-md border p-2'
                   />
@@ -83,7 +84,7 @@ const HomePage = () => {
                   )}
                 </div>
                 <button
-                  className='bg-blue-500 text-black border-black rounded-md border p-2'
+                  className='bg-blue-500 rounded-md border border-black p-2 text-black'
                   type='submit'
                 >
                   Scrape

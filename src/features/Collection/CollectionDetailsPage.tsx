@@ -23,12 +23,16 @@ const CollectionDetailsPage = ({ id }: IProps) => {
     );
 
   return (
-    <div className='flex flex-col gap-4 px-20 py-10'>
-      <h1 className='text-2xl font-bold'>Collection Title:</h1>
-      <p className='text-lg'>
-        Total videos:{' '}
-        <span className='text-xl font-bold'>{collectionVideos?.total}</span>
-      </p>
+    <div className='flex flex-col gap-4 lg:px-20 lg:py-10'>
+      <div className='flex flex-col px-4 pt-4'>
+        <h1 className='text-2xl font-bold text-black'>Collection Title:</h1>
+        <p className='text-lg text-black'>
+          Total videos:{' '}
+          <span className='text-xl font-bold text-black'>
+            {collectionVideos?.total}
+          </span>
+        </p>
+      </div>
       {collectionHashtags && (
         <CollectionHashtags
           hashtags={collectionHashtags}

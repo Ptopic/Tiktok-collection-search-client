@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 import HashTagButton from './HashTags/HashTagButton';
 
 interface IProps {
@@ -99,37 +100,49 @@ const CollectionHashtags = ({
   };
 
   return (
-    <div className='flex flex-col gap-2'>
-      <button
-        onClick={toggleHashtagsVisibility}
-        style={{ cursor: 'pointer', marginBottom: '10px' }}
-      >
-        {isHashtagsSectionVisible
-          ? 'Collapse All Hashtags'
-          : 'Expand All Hashtags'}
-      </button>
-      <button
-        onClick={() => collapseAllDropdowns()}
-        className='text-turquoise800 bg-turquoise300 fixed right-2 top-2 h-fit w-fit cursor-pointer rounded-md p-4 text-start text-lg font-bold'
-      >
-        Collapse all hashtags
-      </button>
-      {isHashtagsSectionVisible && (
-        <>
-          <div className='flex flex-row gap-2'>
-            <button
-              onClick={() => setCurrentHashtags([])}
-              className='text-turquoise800 bg-turquoise100 h-full w-fit cursor-pointer rounded-md p-4 text-start text-lg font-bold'
-            >
-              View all videos
-            </button>
-          </div>
-          <div className='flex flex-col gap-2'>
+    <div
+      className={twMerge(
+        'flex w-full bg-white',
+        isHashtagsSectionVisible ? 'h-[calc(100vh-60px)]' : 'h-[56px]'
+      )}
+    >
+      <div className='relative flex h-full w-full flex-col gap-2 overflow-y-auto bg-white px-4'>
+        <div className='sticky top-0 z-10 flex flex-col gap-2 bg-white pb-2'>
+          <button
+            onClick={toggleHashtagsVisibility}
+            className='rounded-md bg-turquoise100 p-4 font-bold text-turquoise800'
+          >
+            {isHashtagsSectionVisible
+              ? 'Collapse All Hashtags'
+              : 'Expand All Hashtags'}
+          </button>
+
+          {isHashtagsSectionVisible && (
+            <div className='flex flex-row items-center justify-center gap-2'>
+              <button
+                onClick={() => setCurrentHashtags([])}
+                className='h-full w-fit cursor-pointer rounded-md bg-turquoise100 p-4 text-start text-lg font-bold text-turquoise800'
+              >
+                Clear selected hashtags
+              </button>
+
+              <button
+                onClick={() => collapseAllDropdowns()}
+                className='h-full w-fit cursor-pointer rounded-md bg-turquoise100 p-4 text-start text-lg font-bold text-turquoise800'
+              >
+                Collapse open dropdowns
+              </button>
+            </div>
+          )}
+        </div>
+
+        {isHashtagsSectionVisible && (
+          <div className='flex flex-col gap-2 pb-20'>
             {Object.entries(sortedHashtags).map(([letter, tags]) => (
               <div key={letter} className='flex flex-col gap-2'>
                 <strong
                   onClick={() => toggleSection(letter)}
-                  className='text-turquoise800 bg-turquoise100 h-full w-full cursor-pointer rounded-md p-4 text-lg font-bold'
+                  className='cursor-pointer rounded-md bg-turquoise100 p-4 text-lg font-bold text-turquoise800'
                 >
                   {letter.toUpperCase()}:
                 </strong>
@@ -148,8 +161,8 @@ const CollectionHashtags = ({
               </div>
             ))}
           </div>
-        </>
-      )}
+        )}
+      </div>
     </div>
   );
 };
