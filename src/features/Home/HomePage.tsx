@@ -4,7 +4,9 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { ScrapePlaylistFormData, scrapePlaylistSchema } from './formSchema';
 
 import LoadingBar from '@components/LoadingBar';
+import Button from '@components/ui/button';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { removeAuthTokens } from '@shared/utils';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
@@ -48,57 +50,55 @@ const HomePage = () => {
     };
   }, [isLoading]);
 
+  const handleLogout = async () => {
+    await removeAuthTokens();
+    router.push('/login');
+  };
+
   return (
-    <FormProvider {...methods}>
-      <form
-        className='m-auto max-w-[600px] rounded'
-        onSubmit={handleSubmit(handleScrapeCollection)}
-      >
-        <div className='flex h-screen flex-col items-center justify-center gap-2'>
-          <h1 className='text-4xl font-bold'>Tiktok web scraper</h1>
-          {!isLoading ? (
-            <>
-              <div className='flex w-full max-w-md flex-col gap-2'>
-                <input
-                  type='text'
-                  {...register('email')}
-                  value={'test@test.com'}
-                  placeholder='Enter your email'
-                  className='border-gray-300 w-full max-w-md rounded-md border p-2'
-                />
-                {errors.email && (
-                  <p className='text-red-500'>{errors.email.message}</p>
-                )}
-              </div>
-              <div className='flex w-full max-w-md items-center justify-center gap-2'>
-                <div className='flex w-full flex-col gap-2'>
-                  <input
-                    type='text'
-                    {...register('playlistUrl')}
-                    value={'https://vm.tiktok.com/ZNeTjnVGd/'}
-                    placeholder='Enter a tiktok url'
-                    className='border-gray-300 w-full rounded-md border p-2'
-                  />
-                  {errors.playlistUrl && (
-                    <p className='text-red-500'>{errors.playlistUrl.message}</p>
-                  )}
+    <>
+      <Button onClick={handleLogout}>Logout</Button>
+      <FormProvider {...methods}>
+        <form
+          className='m-auto max-w-[600px] rounded'
+          onSubmit={handleSubmit(handleScrapeCollection)}
+        >
+          <div className='flex h-screen flex-col items-center justify-center gap-2'>
+            <h1 className='text-4xl font-bold'>Tiktok web scraper</h1>
+            {!isLoading ? (
+              <>
+                <div className='flex w-full max-w-md items-center justify-center gap-2'>
+                  <div className='flex w-full flex-col gap-2'>
+                    <input
+                      type='text'
+                      {...register('playlistUrl')}
+                      value={'https://vm.tiktok.com/ZNeTjnVGd/'}
+                      placeholder='Enter a tiktok url'
+                      className='border-gray-300 w-full rounded-md border p-2'
+                    />
+                    {errors.playlistUrl && (
+                      <p className='text-red-500'>
+                        {errors.playlistUrl.message}
+                      </p>
+                    )}
+                  </div>
+                  <button
+                    className='bg-blue-500 rounded-md border border-black p-2 text-black'
+                    type='submit'
+                  >
+                    Scrape
+                  </button>
                 </div>
-                <button
-                  className='bg-blue-500 rounded-md border border-black p-2 text-black'
-                  type='submit'
-                >
-                  Scrape
-                </button>
+              </>
+            ) : (
+              <div className='w-[90%]'>
+                <LoadingBar progress={progress} />
               </div>
-            </>
-          ) : (
-            <div className='w-[90%]'>
-              <LoadingBar progress={progress} />
-            </div>
-          )}
-        </div>
-      </form>
-    </FormProvider>
+            )}
+          </div>
+        </form>
+      </FormProvider>
+    </>
   );
 };
 

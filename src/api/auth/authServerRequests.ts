@@ -1,17 +1,15 @@
-import { withAuthenticatedServerRequest } from '@api/requestBuilder/user/withAuthenticatedServerRequest';
-
-import { authCurrentUser, refreshAccessToken } from './requests';
+import { withAuthenticatedServerRequest } from '@api/requestBuilder/server/withServerRequest';
+import { getCurrentUser } from './requests';
 
 const authServerRequests = {
-  authCurrentUser: async () => {
+  getCurrentUser: async () => {
     try {
-      const response = await withAuthenticatedServerRequest(authCurrentUser)();
+      const response = await withAuthenticatedServerRequest(getCurrentUser)();
       return response;
     } catch (e) {
       return null;
     }
   },
-  refreshAccessToken: withAuthenticatedServerRequest(refreshAccessToken),
 };
 
 export default authServerRequests;

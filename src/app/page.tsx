@@ -1,6 +1,6 @@
 import HomePage from '@features/Home/HomePage';
 import { getSSRQueryClient } from '@shared/queryClient';
-import { EARNING, getMetadataTitle } from '@shared/utils';
+import { getMetadataTitle, HOME } from '@shared/utils';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { openGraphImage } from 'metadata/openGraphImage';
 import { Metadata, ResolvingMetadata } from 'next';
@@ -15,7 +15,7 @@ export async function generateMetadata(
     title: getMetadataTitle('Home'),
     openGraph: {
       title: getMetadataTitle('Home'),
-      url: `${parentOpengraphUrl}${EARNING}`,
+      url: `${parentOpengraphUrl}${HOME}`,
       ...openGraphImage,
     },
   };

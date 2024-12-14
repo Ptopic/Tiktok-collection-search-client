@@ -3,47 +3,47 @@
 @tailwind utilities;
 
 * {
-   padding: 0;
-   margin: 0;
-   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 *::-webkit-scrollbar {
-   display: none;
+  display: none;
 }
 
 html,
 body {
-   height: 100vh;
-   overflow: hidden;
-   color: #fff;
-   font-family: 'Helvetica Neue', sans-serif;
+  height: 100vh;
+  overflow: hidden;
+  color: #000;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 
 .slider-container {
-   height: calc(100vh - 140px);
-   overflow-y: scroll;
-   scroll-snap-type: y mandatory;
-   scroll-behavior: smooth;
+  height: calc(100vh - 140px);
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
 }
 
 .slider-children {
-   height: calc(100vh - 140px);
-   scroll-snap-align: start;
-   position: relative;
-   border: 1px solid transparent;
+  height: calc(100vh - 140px);
+  scroll-snap-align: start;
+  position: relative;
+  border: 1px solid transparent;
 }
 
 .video {
-   position: absolute;
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .video-content {
-   padding: 10px;
-   position: relative;
-   top: 85%;
-   color: #fff;
+  padding: 10px;
+  position: relative;
+  top: 85%;
+  color: #fff;
 }

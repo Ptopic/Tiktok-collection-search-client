@@ -1,36 +1,33 @@
 'use server';
 
-import { COOKIE_NAME } from '@shared/constants';
-
+import { IAuthResponse } from '@api/auth/types';
+import { COOKIE_NAME } from '@shared/constants/cookies';
 import { getCookie, removeCookie, setCookie } from './cookie';
-import { decodeJwt } from './jwt';
 
-export const readAccessTokenForCurrentUser = () => {
+export const getAccessToken = () => {
   return getCookie(COOKIE_NAME.ACCESS_TOKEN);
 };
 
-export const readRefreshTokenForCurrentUser = () => {
+export const getRefreshToken = () => {
   return getCookie(COOKIE_NAME.REFRESH_TOKEN);
 };
 
-export const saveAccessTokenForCurrentUser = async (jwt: string) => {
-  const decodedJwt = decodeJwt(jwt);
-
+export const setAuthTokens = async (authResponse: IAuthResponse) => {
   setCookie({
     name: COOKIE_NAME.ACCESS_TOKEN,
-    value: jwt,
-    expires: decodedJwt.exp * 1000,
+    value: authResponse.accessToken,
+    maxAge: 60 * 60 * 24 * 30,
   });
-};
-
-export const saveRefreshTokenForCurrentUser = async (jwt: string) => {
-  const decodedJwt = decodeJwt(jwt);
 
   setCookie({
     name: COOKIE_NAME.REFRESH_TOKEN,
-    value: jwt,
-    expires: decodedJwt.exp * 1000,
+    value: authResponse.refreshToken,
   });
+};
+
+export const removeAuthTokens = async () => {
+  await removeAccessTokenForCurrentUser();
+  await removeRefreshTokenForCurrentUser();
 };
 
 export const removeAccessTokenForCurrentUser = () => {

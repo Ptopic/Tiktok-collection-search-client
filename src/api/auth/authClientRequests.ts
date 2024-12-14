@@ -1,32 +1,14 @@
-import { withAuthenticatedClientRequest } from '@api/requestBuilder/user/withAuthenticatedClientRequest';
-import { withClientRequest } from '@api/requestBuilder/withClientRequest';
-
+import { withAuthenticatedClientRequest } from '@api/requestBuilder/client/withClientRequest';
 import {
-  adminForgotPassword,
-  adminResetPassword,
-  authCurrentUser,
-  checkReferralCode,
-  forgotPassword,
-  loginWithGoogle,
+  getCurrentUser,
   loginWithPassword,
-  logout,
-  refreshAccessToken,
-  resetPassword,
   signUpWithPassword,
 } from './requests';
 
 const authClientRequests = {
-  authCurrentUser: withAuthenticatedClientRequest(authCurrentUser),
-  loginWithPassword: withClientRequest(loginWithPassword),
-  loginWithGoogle: withClientRequest(loginWithGoogle),
-  forgotPassword: withClientRequest(forgotPassword),
-  signUpWithPassword: withClientRequest(signUpWithPassword),
-  refreshAccessToken: withClientRequest(refreshAccessToken),
-  resetPassword: withClientRequest(resetPassword),
-  adminForgotPassword: withClientRequest(adminForgotPassword),
-  adminResetPassword: withClientRequest(adminResetPassword),
-  logout: withAuthenticatedClientRequest(logout),
-  checkReferralCode: withAuthenticatedClientRequest(checkReferralCode),
+  getCurrentUser: withAuthenticatedClientRequest(getCurrentUser),
+  loginWithPassword: withAuthenticatedClientRequest(loginWithPassword),
+  signUpWithPassword: withAuthenticatedClientRequest(signUpWithPassword),
 };
 
 export default authClientRequests;

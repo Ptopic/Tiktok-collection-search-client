@@ -1,4 +1,4 @@
-import { withClientRequest } from '@api/requestBuilder/withClientRequest';
+import { withAuthenticatedClientRequest } from '@api/requestBuilder/client/withClientRequest';
 import {
   getCollectionHashtags,
   getCollectionVideos,
@@ -6,9 +6,9 @@ import {
 } from './requests';
 
 const scraperClientRequests = {
-  getCollectionHashtags: withClientRequest(getCollectionHashtags),
-  getCollectionVideos: withClientRequest(getCollectionVideos),
-  scrapeCollection: withClientRequest(scrapeCollection),
+  getCollectionHashtags: withAuthenticatedClientRequest(getCollectionHashtags),
+  getCollectionVideos: withAuthenticatedClientRequest(getCollectionVideos),
+  scrapeCollection: withAuthenticatedClientRequest(scrapeCollection),
 };
 
 export default scraperClientRequests;
