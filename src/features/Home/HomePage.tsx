@@ -4,10 +4,8 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { ScrapePlaylistFormData, scrapePlaylistSchema } from './formSchema';
 
 import LoadingBar from '@components/LoadingBar';
-import Button from '@components/ui/button';
 import Input from '@components/ui/input';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { removeAuthTokens } from '@shared/utils';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
@@ -51,20 +49,14 @@ const HomePage = () => {
     };
   }, [isLoading]);
 
-  const handleLogout = async () => {
-    await removeAuthTokens();
-    router.push('/login');
-  };
-
   return (
     <>
-      <Button onClick={handleLogout}>Logout</Button>
       <FormProvider {...methods}>
         <form
           className='m-auto max-w-[600px] rounded'
           onSubmit={handleSubmit(handleScrapeCollection)}
         >
-          <div className='flex h-screen flex-col items-center justify-center gap-2'>
+          <div className='flex h-[calc(100vh-100px)] flex-col items-center justify-center gap-2'>
             <h1 className='text-4xl font-bold'>Tiktok web scraper</h1>
             {!isLoading ? (
               <>
