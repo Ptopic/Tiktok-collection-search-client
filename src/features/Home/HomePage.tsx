@@ -5,6 +5,7 @@ import { ScrapePlaylistFormData, scrapePlaylistSchema } from './formSchema';
 
 import LoadingBar from '@components/LoadingBar';
 import Button from '@components/ui/button';
+import Input from '@components/ui/input';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { removeAuthTokens } from '@shared/utils';
 import { useRouter } from 'next/navigation';
@@ -69,12 +70,11 @@ const HomePage = () => {
               <>
                 <div className='flex w-full max-w-md items-center justify-center gap-2'>
                   <div className='flex w-full flex-col gap-2'>
-                    <input
+                    <Input
                       type='text'
                       {...register('playlistUrl')}
                       value={'https://vm.tiktok.com/ZNeTjnVGd/'}
                       placeholder='Enter a tiktok url'
-                      className='border-gray-300 w-full rounded-md border p-2'
                     />
                     {errors.playlistUrl && (
                       <p className='text-red-500'>

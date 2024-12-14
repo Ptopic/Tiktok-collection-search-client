@@ -9,14 +9,14 @@ interface IProps {
 }
 
 const CollectionHashtags = ({
-  hashtags,
+  hashtags = [],
   currentHashtags,
   setCurrentHashtags,
 }: IProps) => {
   const [isHashtagsSectionVisible, setIsHashtagsSectionVisible] =
     useState(true);
 
-  const hashtagsWithoutHashtag = hashtags.map((hashtag) =>
+  const hashtagsWithoutHashtag = hashtags?.map((hashtag) =>
     hashtag.replace('#', '')
   );
 

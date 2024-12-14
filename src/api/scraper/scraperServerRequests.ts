@@ -9,6 +9,7 @@ const scraperServerRequests = {
   getCollectionHashtags: withAuthenticatedServerRequest(getCollectionHashtags),
   getCollectionVideos: withAuthenticatedServerRequest(getCollectionVideos),
   scrapeCollection: withAuthenticatedServerRequest(scrapeCollection),
+  getCollectionById: withAuthenticatedServerRequest(getCollectionById),
 };
 
 export default scraperServerRequests;

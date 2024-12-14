@@ -3,6 +3,12 @@ import { config } from '@shared/config/config';
 import { ICollectionResponse } from 'interfaces/collection';
 import { IScrapeCollectionRequest } from 'interfaces/scraper';
 
+export const getCollectionById =
+  (request: ICallableRequestBuilder<ICollectionResponse>) =>
+  async (collectionId: string) => {
+    return request.call(`${config.apiUrl}/scraper/${collectionId}`);
+  };
+
 export const getCollectionHashtags =
   (request: ICallableRequestBuilder<string[]>) =>
   async (collectionId: string) => {

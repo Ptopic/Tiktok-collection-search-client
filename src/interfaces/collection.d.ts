@@ -7,6 +7,7 @@ export interface IVideo {
 }
 
 interface ICollectionResponse {
+  name: string;
   total: number;
   videos: IVideo[];
 }

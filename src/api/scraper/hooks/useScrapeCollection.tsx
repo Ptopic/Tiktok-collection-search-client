@@ -9,9 +9,8 @@ interface IProps {
 
 const useScrapeCollection = ({ onSuccess }: IProps) => {
   return useMutation({
-    mutationFn: ({ email, playlistUrl }: IScrapeCollectionRequest) =>
+    mutationFn: ({ playlistUrl }: IScrapeCollectionRequest) =>
       scraperClientRequests.scrapeCollection({
-        email,
         playlistUrl,
       }),
     onSuccess: (data: any) => {
