@@ -9,13 +9,13 @@ import CollectionHashtags from './CollectionHashtags';
 import CollectionVideos from './CollectionVideos';
 
 interface IProps {
-  id: number;
+  id: string;
 }
 
 const CollectionDetailsPage = ({ id }: IProps) => {
   const [currentHashtags, setCurrentHashtags] = useState<string[]>([]);
 
-  const collectionId = id.toString();
+  const collectionId = id;
   const { data: collectionDetails, isLoading: isCollectionDetailsLoading } =
     useGetCollectionById(collectionId);
   const { data: collectionHashtags, isLoading: isHashtagsLoading } =
@@ -26,12 +26,12 @@ const CollectionDetailsPage = ({ id }: IProps) => {
       currentHashtags ? currentHashtags : []
     );
 
-  return isCollectionDetailsLoading || isHashtagsLoading || isLoadingVideos ? (
+  return isCollectionDetailsLoading ? (
     <div>Loading...</div>
   ) : (
     <div className='flex flex-col gap-4 lg:px-20 lg:py-10'>
       <div className='flex flex-col px-4 pt-4'>
-        <BackButton href='/' />
+        <BackButton />
         <h1 className='text-2xl font-bold text-black'>
           {collectionDetails?.name || 'Untitled Collection'}
         </h1>
@@ -47,10 +47,14 @@ const CollectionDetailsPage = ({ id }: IProps) => {
           hashtags={collectionHashtags}
           currentHashtags={currentHashtags || []}
           setCurrentHashtags={setCurrentHashtags}
+          isLoading={isHashtagsLoading}
         />
       )}
       {collectionVideos && collectionVideos.videos.length > 0 && (
-        <CollectionVideos videos={collectionVideos.videos} />
+        <CollectionVideos
+          videos={collectionVideos.videos}
+          isLoading={isLoadingVideos}
+        />
       )}
     </div>
   );

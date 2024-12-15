@@ -9,9 +9,10 @@ interface IProps {
 const HashTagButton = ({ hashtag, onClick, selected }: IProps) => {
   return (
     <button
+      type='button'
       onClick={onClick}
       className={twMerge(
-        'bg-turquoise100 text-turquoise800 rounded-md px-2 py-1',
+        'rounded-md bg-turquoise100 px-2 py-1 text-turquoise800',
         selected && 'bg-turquoise300'
       )}
     >

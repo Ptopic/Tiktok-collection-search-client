@@ -11,3 +11,9 @@ interface ICollectionResponse {
   total: number;
   videos: IVideo[];
 }
+
+export interface ICollection {
+  id: string;
+  name: string;
+  createdAt: string;
+}

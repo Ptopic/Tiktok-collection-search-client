@@ -1,7 +1,12 @@
 import { ICallableRequestBuilder } from '@api/requestBuilder/types';
 import { config } from '@shared/config/config';
-import { ICollectionResponse } from 'interfaces/collection';
+import { ICollection, ICollectionResponse } from 'interfaces/collection';
 import { IScrapeCollectionRequest } from 'interfaces/scraper';
+
+export const getMyCollections =
+  (request: ICallableRequestBuilder<ICollection[]>) => async () => {
+    return request.call(`${config.apiUrl}/scraper/my-collections`);
+  };
 
 export const getCollectionById =
   (request: ICallableRequestBuilder<ICollectionResponse>) =>
@@ -43,5 +48,14 @@ export const scrapeCollection =
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
+    }));
+  };
+
+export const deleteCollection =
+  (request: ICallableRequestBuilder<string>) =>
+  async (collectionId: string) => {
+    return request.call(`${config.apiUrl}/scraper/${collectionId}`, (init) => ({
+      ...init,
+      method: 'DELETE',
     }));
   };

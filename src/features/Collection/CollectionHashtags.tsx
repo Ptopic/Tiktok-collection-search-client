@@ -6,12 +6,14 @@ interface IProps {
   hashtags: string[];
   currentHashtags: string[];
   setCurrentHashtags: (hashtags: string[]) => void;
+  isLoading: boolean;
 }
 
 const CollectionHashtags = ({
   hashtags = [],
   currentHashtags,
   setCurrentHashtags,
+  isLoading,
 }: IProps) => {
   const [isHashtagsSectionVisible, setIsHashtagsSectionVisible] =
     useState(true);
@@ -111,6 +113,7 @@ const CollectionHashtags = ({
           <button
             onClick={toggleHashtagsVisibility}
             className='rounded-md bg-turquoise100 p-4 font-bold text-turquoise800'
+            disabled={isLoading}
           >
             {isHashtagsSectionVisible
               ? 'Collapse All Hashtags'
@@ -122,6 +125,8 @@ const CollectionHashtags = ({
               <button
                 onClick={() => setCurrentHashtags([])}
                 className='h-full w-fit cursor-pointer rounded-md bg-turquoise100 p-4 text-start text-lg font-bold text-turquoise800'
+                type='button'
+                disabled={isLoading}
               >
                 Clear selected hashtags
               </button>
@@ -129,6 +134,8 @@ const CollectionHashtags = ({
               <button
                 onClick={() => collapseAllDropdowns()}
                 className='h-full w-fit cursor-pointer rounded-md bg-turquoise100 p-4 text-start text-lg font-bold text-turquoise800'
+                type='button'
+                disabled={isLoading}
               >
                 Collapse open dropdowns
               </button>

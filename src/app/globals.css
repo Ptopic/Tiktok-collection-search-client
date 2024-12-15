@@ -21,14 +21,14 @@ body {
 }
 
 .slider-container {
-  height: calc(100vh - 140px);
+  height: calc(100vh - 190px);
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
 }
 
 .slider-children {
-  height: calc(100vh - 140px);
+  height: calc(100vh - 190px);
   scroll-snap-align: start;
   position: relative;
   border: 1px solid transparent;

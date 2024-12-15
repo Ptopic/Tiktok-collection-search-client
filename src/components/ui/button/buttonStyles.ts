@@ -10,7 +10,7 @@ export const BUTTON_VARIANT_CLASSNAME = {
   [BUTTON_VARIANT.PRIMARY]: 'border border-black bg-transparent text-black',
   [BUTTON_VARIANT.SECONDARY]: '',
   [BUTTON_VARIANT.TERTIARY]: '',
-  [BUTTON_VARIANT.DESTRUCTIVE]: 'bg-red50 text-red800',
+  [BUTTON_VARIANT.DESTRUCTIVE]: 'border border-red100 bg-red50 text-red800',
   [BUTTON_VARIANT.LINK]: 'text-black border-none bg-transparent !p-0',
 };
 

@@ -20,7 +20,7 @@ const MobileMenuItem = ({ menuItem, segment, setIsOpen, disabled }: IProps) => {
   return (
     <Link
       className={twMerge(
-        'text-gray500 hover:bg-gray50 group flex h-14 cursor-pointer items-center gap-3 px-6 font-medium transition-all duration-300 ease-in-out',
+        'text-gray500 hover:bg-gray50 group flex h-full cursor-pointer items-center gap-3 px-4 font-medium transition-all duration-300 ease-in-out',
         isLinkActive && 'bg-brand50 text-brand600 hover:bg-brand50',
         disabled && 'text-gray-500 pointer-events-none'
       )}
@@ -34,8 +34,8 @@ const MobileMenuItem = ({ menuItem, segment, setIsOpen, disabled }: IProps) => {
       )}
       <p
         className={twMerge(
-          'body-small-regular whitespace-nowrap',
-          isLinkActive && 'body-small-bold'
+          'whitespace-nowrap py-2 text-lg',
+          isLinkActive && 'text-brand600'
         )}
       >
         {menuItem.label}

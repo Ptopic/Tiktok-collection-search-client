@@ -5,9 +5,10 @@ import scraperClientRequests from '../scraperClientRequests';
 
 interface IProps {
   onSuccess?: (data: any) => void;
+  onError?: (error: IError) => void;
 }
 
-const useScrapeCollection = ({ onSuccess }: IProps) => {
+const useScrapeCollection = ({ onSuccess, onError }: IProps) => {
   return useMutation({
     mutationFn: ({ playlistUrl }: IScrapeCollectionRequest) =>
       scraperClientRequests.scrapeCollection({
@@ -18,8 +19,7 @@ const useScrapeCollection = ({ onSuccess }: IProps) => {
       onSuccess && onSuccess(data);
     },
     onError: (error: IError) => {
-      console.log(error);
-      console.log('Toast error');
+      onError && onError(error);
     },
   });
 };

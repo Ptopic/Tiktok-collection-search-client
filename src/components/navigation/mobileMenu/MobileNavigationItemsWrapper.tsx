@@ -55,7 +55,7 @@ const MobileNavigationItemsWrapper = ({ items, segment }: IProps) => {
             />
           </div>
         </div>
-        <div className='mb-10'>
+        <div className='mb-10 py-4'>
           {items.map((item) => (
             <MobileMenuItem
               key={item.label}

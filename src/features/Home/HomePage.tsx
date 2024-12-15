@@ -19,6 +19,10 @@ const HomePage = () => {
     onSuccess: (data) => {
       router.push(`/collection/${data.collectionId}`);
     },
+    onError: (error) => {
+      console.log(error);
+      setIsLoading(false);
+    },
   });
 
   const methods = useForm<ScrapePlaylistFormData>({
@@ -57,28 +61,27 @@ const HomePage = () => {
           onSubmit={handleSubmit(handleScrapeCollection)}
         >
           <div className='flex h-[calc(100vh-100px)] flex-col items-center justify-center gap-2'>
-            <h1 className='text-4xl font-bold'>Tiktok web scraper</h1>
+            <h1 className='text-center text-4xl font-bold'>
+              Tiktok collection viewer
+            </h1>
             {!isLoading ? (
               <>
-                <div className='flex w-full max-w-md items-center justify-center gap-2'>
+                <div className='lg:px-0lg:max-w-md flex w-full items-center justify-center gap-2 px-4'>
                   <div className='flex w-full flex-col gap-2'>
                     <Input
+                      name='playlistUrl'
+                      placeholder='https://vm.tiktok.com/123123123/'
                       type='text'
-                      {...register('playlistUrl')}
-                      value={'https://vm.tiktok.com/ZNeTjnVGd/'}
-                      placeholder='Enter a tiktok url'
+                      error={errors.playlistUrl?.message as string}
+                      register={register('playlistUrl')}
+                      disabled={isLoading}
                     />
-                    {errors.playlistUrl && (
-                      <p className='text-red-500'>
-                        {errors.playlistUrl.message}
-                      </p>
-                    )}
                   </div>
                   <button
                     className='bg-blue-500 rounded-md border border-black p-2 text-black'
                     type='submit'
                   >
-                    Scrape
+                    View
                   </button>
                 </div>
               </>
